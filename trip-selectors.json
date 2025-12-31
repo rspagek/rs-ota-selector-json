@@ -1,0 +1,116 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-31T00:00:00Z",
+  "description": "Trip.com selector definitions",
+  "hotelName": {
+    "selectors": [
+      "h1[data-testid=\"hotel-name\"]",
+      "h1[class*=\"hotel\"]",
+      "h1[class*=\"Hotel\"]",
+      "h1",
+      "[data-testid=\"hotel-name\"]",
+      "[class*=\"hotel-name\"]",
+      "[class*=\"hotelName\"]",
+      "[class*=\"HotelName\"]",
+      ".hotel-name",
+      "header h1",
+      "main h1"
+    ],
+    "fallback": "meta[property=\"og:title\"]"
+  },
+  "roomList": {
+    "selectors": [
+      "[class*=\"room-list\"]",
+      "[class*=\"RoomList\"]",
+      "[class*=\"roomList\"]",
+      "[data-testid*=\"room\"]",
+      "[id*=\"room\"]",
+      "[class*=\"room-container\"]",
+      "[class*=\"roomContent\"]",
+      ".mainRoomList__UlISo",
+      "[class*=\"mainRoomList\"]",
+      "[data-test-id=\"mainRoomList\"]",
+      "#hotelRoomList"
+    ]
+  },
+  "roomCard": {
+    "selectors": [
+      ".commonRoomCard__BpNjl",
+      "[class*=\"commonRoomCard\"]",
+      "[class*=\"room-card\"]",
+      "[class*=\"RoomCard\"]",
+      "[class*=\"roomCard\"]",
+      "[class*=\"room-item\"]",
+      "[class*=\"RoomItem\"]",
+      "[data-testid*=\"room\"]",
+      "[class*=\"card\"][class*=\"room\"]"
+    ]
+  },
+  "roomType": {
+    "selectors": [
+      "[class*=\"commonRoomCard-title\"]",
+      "[class*=\"roomCard-title\"]",
+      "[class*=\"RoomCard-title\"]",
+      ".room-title",
+      "[class*=\"title\"]"
+    ],
+    "fallback": {
+      "layers": [
+        {
+          "method": "textExtraction",
+          "description": "Extract from room card text using regex"
+        },
+        {
+          "method": "pageSearch",
+          "description": "Search page for room type patterns"
+        },
+        {
+          "method": "generic",
+          "value": "Unknown room type"
+        }
+      ]
+    }
+  },
+  "price": {
+    "final": {
+      "selectors": [
+        "[class*=\"priceBox_priceBox-container_realPrice\"]",
+        "[class*=\"priceBox-realPrice\"]",
+        "[class*=\"realPrice\"]",
+        ".final-price",
+        "[class*=\"finalPrice\"]",
+        "[class*=\"saleRoomItemBox-priceBox-displayPrice\"]"
+      ]
+    },
+    "original": {
+      "selectors": [
+        "[class*=\"priceBox_priceBox-container_deletePrice\"]",
+        "[class*=\"priceBox-deletePrice\"]",
+        "[class*=\"deletePrice\"]",
+        ".original-price",
+        "[class*=\"originalPrice\"]",
+        "[class*=\"strikethrough\"]",
+        "[class*=\"saleRoomItemBox-priceBox-deletePrice\"]"
+      ]
+    }
+  },
+  "features": {
+    "selectors": [
+      "[class*=\"features\"]",
+      "[class*=\"Features\"]",
+      "[class*=\"room-features\"]"
+    ]
+  },
+  "cookies": {
+    "selectors": [
+      "#ibu-cookie-banner-btn-accept",
+      "[data-cookie-banner-market=\"accept\"]"
+    ]
+  },
+  "timeouts": {
+    "pageLoad": 30000,
+    "roomData": 15000,
+    "navigation": 60000
+  }
+}
+

@@ -1,0 +1,98 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-31T00:00:00Z",
+  "description": "Agoda.com selector definitions",
+  "waitSelectors": {
+    "roomData": {
+      "primary": "[class*=\"StickyNavPrice\"]",
+      "timeout": 30000,
+      "description": "Wait for StickyNavPrice element to indicate room data is loaded"
+    }
+  },
+  "hotelName": {
+    "selectors": [
+      "h1[data-selenium=\"hotel-name\"]",
+      "h1.PropertyName",
+      "[data-selenium=\"hotel-name\"]",
+      "h1"
+    ],
+    "fallback": "meta[property=\"og:title\"]"
+  },
+  "roomCard": {
+    "selectors": [
+      "[data-testid=\"room-item-fallback\"]",
+      "[class*=\"ChildRoomsList-room\"]",
+      "[class*=\"room-card\"]",
+      "[class*=\"RoomCard\"]",
+      "[class*=\"PropertyRoomCard\"]"
+    ]
+  },
+  "roomType": {
+    "selectors": [
+      "[data-testid=\"room-name\"]",
+      "[data-selenium=\"masterroom-title-name\"]",
+      ".MasterRoom__HotelName",
+      "[class*=\"MasterRoom__HotelName\"]",
+      "[class*=\"room-title\"]",
+      "[class*=\"RoomTitle\"]"
+    ],
+    "fallback": {
+      "layers": [
+        {
+          "method": "textExtraction",
+          "description": "Extract from room card text using regex"
+        },
+        {
+          "method": "pageSearch",
+          "description": "Search page for any room type text patterns"
+        },
+        {
+          "method": "generic",
+          "value": "Unknown room type"
+        }
+      ]
+    }
+  },
+  "price": {
+    "container": {
+      "selectors": [
+        "[data-component=\"x-sell-activity-price\"]",
+        "[class*=\"price-container\"]",
+        "[class*=\"PriceContainer\"]"
+      ]
+    },
+    "final": {
+      "selectors": [
+        "[data-fpc-value]",
+        "strong[data-ppapi=\"room-price\"]",
+        "[data-ppapi=\"room-price\"]"
+      ],
+      "attribute": "data-fpc-value"
+    },
+    "original": {
+      "selectors": [
+        "[data-testid=\"crossout-price\"]",
+        "[class*=\"original-price\"]",
+        "[class*=\"crossout\"]"
+      ]
+    }
+  },
+  "timeouts": {
+    "pageLoad": 30000,
+    "roomData": 15000,
+    "navigation": 60000
+  },
+  "debug": {
+    "checkElements": [
+      ".RoomGrid-content",
+      "#roomGridContent",
+      "[class*=\"RoomGrid\"]",
+      "[class*=\"MasterRoom\"]",
+      "[id*=\"MasterRoom\"]",
+      "[class*=\"room-card\"]",
+      "[class*=\"RoomCard\"]",
+      "[class*=\"PropertyRoomCard\"]"
+    ]
+  }
+}
+

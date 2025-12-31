@@ -1,0 +1,96 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-12-31T00:00:00Z",
+  "description": "Gother.com selector definitions",
+  "hotelName": {
+    "selectors": [
+      "meta[property=\"og:title\"]",
+      "h1",
+      "[class*=\"hotel-name\"]",
+      "[class*=\"HotelName\"]"
+    ],
+    "attribute": "content",
+    "fallback": "Unknown Hotel"
+  },
+  "searchButton": {
+    "selectors": [
+      "#hotel-search-button"
+    ],
+    "timeout": 30000,
+    "description": "Button to click to load room prices"
+  },
+  "roomData": {
+    "selectors": [
+      "[class*=\"room-list\"]",
+      "[class*=\"RoomList\"]",
+      "[class*=\"room-card\"]",
+      "[class*=\"RoomCard\"]"
+    ],
+    "waitFor": {
+      "selector": "[class*=\"room-card\"]",
+      "timeout": 30000
+    }
+  },
+  "roomType": {
+    "selectors": [
+      "[class*=\"room-title\"]",
+      "[class*=\"RoomTitle\"]",
+      "[class*=\"room-name\"]",
+      "[data-testid*=\"room-type\"]"
+    ],
+    "fallback": {
+      "layers": [
+        {
+          "method": "textExtraction",
+          "description": "Extract from room card text using regex"
+        },
+        {
+          "method": "pageSearch",
+          "description": "Search page for room type patterns"
+        },
+        {
+          "method": "generic",
+          "value": "Unknown room type"
+        }
+      ]
+    }
+  },
+  "price": {
+    "final": {
+      "selectors": [
+        "[class*=\"price\"]",
+        "[class*=\"Price\"]",
+        "[data-price]",
+        "[class*=\"final-price\"]"
+      ]
+    },
+    "original": {
+      "selectors": [
+        "[class*=\"original-price\"]",
+        "[class*=\"crossout\"]",
+        "[class*=\"strikethrough\"]"
+      ]
+    }
+  },
+  "timeouts": {
+    "pageLoad": 10000,
+    "buttonWait": 30000,
+    "urlChange": 20000,
+    "apiResponse": 30000,
+    "roomData": 30000,
+    "shortWait": 1000
+  },
+  "apiEndpoints": {
+    "roomData": [
+      "/room",
+      "/api/",
+      "/search",
+      "/available",
+      "roomsAvailable"
+    ],
+    "exclude": [
+      "HotelsNearBy"
+    ]
+  }
+}
+
